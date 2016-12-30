@@ -1,0 +1,1 @@
+{"version":3,"sources":["main.scss"],"names":[],"mappings":"AAAA,KACI,WAAY,CACf,KAGG,eAAgB,CACnB,OAGG,aAAc,CACjB","file":"main.css","sourcesContent":["html {\n    height: 100%;\n}\n\nbody {\n    min-height: 100%;\n}\n\nmy-app {\n    display: block;\n}\n"]}

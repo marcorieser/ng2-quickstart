@@ -8,24 +8,36 @@ var gulp = require('gulp'),
     log = require('connect-logger'),
 
     tsProject = ts.createProject('tsconfig.json'),
-    appRoot = 'app',
+
+    directories = {
+        appRoot: 'app',
+        jsDist:  'dist'
+    },
 
     input = {
-        sass: appRoot + '/**/*.scss',
-        ts:   appRoot + '/**/*.ts'
+        sass: [
+            directories.appRoot + '/**/*.scss',
+            'styles/**/*.scss'
+        ],
+        ts:   [
+            directories.appRoot + '/**/*.ts'
+        ]
     },
     output = {
-        sass: appRoot,
-        ts:   'dist'
+        ts: directories.jsDist
     };
 
 gulp.task('default', ['watch']);
 
 gulp.task('css', function () {
     return gulp.src(input.sass)
+        .pipe(sourcemaps.init())
         .pipe(sass({outputStyle: 'compressed'}))
         .pipe(prefixer('last 2 version'))
-        .pipe(gulp.dest(output.sass));
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest(function (file) {
+            return file.base;
+        }));
 });
 
 gulp.task('ts', function () {
