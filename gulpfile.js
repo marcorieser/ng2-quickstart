@@ -42,7 +42,7 @@ gulp.task('serve', function () {
     browserSync.init(
         {
             notify:         false,
-            logLevel:       "silent",
+            logLevel:       'info',
             logConnections: false,
             logFileChanges: false,
             injectChanges:  false, // workaround for Angular 2 styleUrls loading
